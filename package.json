@@ -1,0 +1,56 @@
+{
+  "name": "create-conventional-pkg",
+  "version": "1.0.0",
+  "description": "create-conventional-pkg will generate a new node package folder, and configure with commitlint, commitizen, cz-conventional-changelog, husky and standard version.",
+  "main": "index.js",
+  "author": "Vito Giarrusso <vito.giarrusso@me.com> (https://github.com/thtliife)",
+  "license": "MIT",
+  "devDependencies": {
+    "@commitlint/cli": "^3.1.3",
+    "@commitlint/config-angular": "^3.1.1",
+    "commitizen": "^2.9.6",
+    "cz-conventional-changelog": "^2.0.0",
+    "husky": "^0.14.3",
+    "standard-version": "^4.2.0"
+  },
+  "dependencies": {
+    "chalk": "^2.1.0",
+    "commander": "^2.11.0",
+    "cross-spawn": "^5.1.0",
+    "fs-extra": "^4.0.1",
+    "prompt": "^1.0.0"
+  },
+  "bin": {
+    "create-conventional-pkg": "index.js"
+  },
+  "config": {
+    "commitizen": {
+      "path": "./node_modules/cz-conventional-changelog"
+    },
+    "commitLint": {
+      "extends": ["@commitlint/config-angular"],
+      "rules": {
+        "lang": [0, "always", "eng"],
+        "scope-enum": [
+          2,
+          "always",
+          [
+            "config",
+            "deps",
+            "info",
+            "module",
+            "package",
+            "release",
+            "script",
+            "utility"
+          ]
+        ]
+      }
+    }
+  },
+  "scripts": {
+    "commit": "git-cz",
+    "commitmsg": "commitlint -e",
+    "release": "standard-version"
+  }
+}
